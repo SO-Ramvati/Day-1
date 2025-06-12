@@ -31,6 +31,19 @@
 		z-index: -1;
 	}
 
+	.brightness-100 {
+		filter: brightness(1);
+	}
+	.brightness-75 {
+		filter: brightness(0.75);
+	}
+	.brightness-50 {
+		filter: brightness(0.5);
+	}
+
+body {
+    transition: filter 0.4s ease;
+}
 
 
     .snowflake {
@@ -134,15 +147,22 @@
     </div>
 
     <div class="mt-8 text-center">
-      <button id="moreSnowBtn" class="px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
-        <i class="fas fa-plus mr-2"></i> Add More Snow
+      <button id="moreSnowBtn" class="px-6 py-3 bg-black bg-opacity-40 text-white border border-white rounded-full backdrop-blur-sm transition-all duration-300 transform hover:scale-105 hover:bg-opacity-60 shadow">
+		<i class="fas fa-snowflake text-blue-200 mr-2"></i> Add More Snow
+	  </button>
+
+      <button id="romanceModeBtn" class="px-6 py-3 bg-black bg-opacity-40 text-white border border-white rounded-full backdrop-blur-sm transition-all duration-300 transform hover:scale-105 hover:bg-opacity-60 shadow">
+		<i class="fas fa-plus mr-2"></i> Romantic Mode
+	  </button>
+	  
+	  <button id="toggleMusic" class="px-6 py-3 bg-black bg-opacity-40 text-white border border-white rounded-full backdrop-blur-sm transition-all duration-300 transform hover:scale-105 hover:bg-opacity-60 shadow">
+		<i class="fas fa-plus mr-2"></i> Play Music
       </button>
-      <button id="romanceModeBtn" class="ml-4 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
-        <i class="fas fa-heart mr-2"></i> Romance Mode
-      </button>
-      <button id="toggleMusic" class="mt-4 ml-4 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
-        <i class="fas fa-music mr-2"></i> Play Music
-      </button>
+
+	  <button id="brightnessBtn" class="px-6 py-3 bg-black bg-opacity-40 text-white border border-white rounded-full backdrop-blur-sm transition-all duration-300 transform hover:scale-105 hover:bg-opacity-60 shadow">
+		<i class="fas fa-plus mr-2"></i> Brightness
+	  </button>
+
     </div>
   </div>
 
@@ -228,6 +248,31 @@
       }
       isPlaying = !isPlaying;
     });
+	
+	// Brightness Adjustment
+    const brightnessLevels = ['brightness-100', 'brightness-75', 'brightness-50'];
+    let currentBrightnessIndex = 0;
+
+    const brightnessBtn = document.getElementById('brightnessBtn');
+
+    brightnessBtn.addEventListener('click', () => {
+      // Remove existing brightness class
+      document.body.classList.remove(...brightnessLevels);
+
+      // Move to next brightness level
+      currentBrightnessIndex = (currentBrightnessIndex + 1) % brightnessLevels.length;
+
+      // Apply new brightness class
+      document.body.classList.add(brightnessLevels[currentBrightnessIndex]);
+
+      // Update button icon/text
+      const icons = ['<i class="fas fa-sun mr-2"></i>', '<i class="fas fa-cloud-sun mr-2"></i>', '<i class="fas fa-moon mr-2"></i>'];
+      const labels = ['Bright Mode', 'Dimmed Mode', 'Night Mode'];
+      brightnessBtn.innerHTML = icons[currentBrightnessIndex] + labels[currentBrightnessIndex];
+    });
+
+    // Start with full brightness
+    document.body.classList.add(brightnessLevels[currentBrightnessIndex]);
   </script>
 </body>
 </html>
