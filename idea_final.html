@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chuck & Sara - Romantic Night</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    body {
+		font-family: 'Trebuchet MS', sans-serif;
+		text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.4);
+		position: relative;
+		overflow-x: hidden;
+		margin: 0;
+		padding: 0;
+		z-index: 0;
+	}
+
+	body::before {
+		content: '';
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: url('hiccustrid.png') no-repeat center center fixed;
+		background-size: cover;
+		filter: blur(8px) brightness(0.45);
+		z-index: -1;
+	}
+
+
+
+    .snowflake {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .moon {
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle at 30px 30px, #fff 0%, #fff 90%, transparent 90%);
+      border-radius: 50%;
+      box-shadow: 0 0 40px 5px #fff, 0 0 100px 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .couple-container {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .couple-cutout {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://akns-images.eonline.com/eol_images/Entire_Site/201538/rs_1024x759-150408102448-1024-chuck.jpg?fit=around%7C1024:759&output-quality=90&crop=1024:759;center,top');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+      mix-blend-mode: lighten;
+    }
+
+    .romance-text {
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    }
+
+    @keyframes falling {
+      0% { transform: translateY(-10vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.9;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    }
+  </style>
+</head>
+<body class="bg-black min-h-screen flex flex-col items-center justify-center p-4">
+
+  <div class="max-w-4xl w-full mx-auto">
+    <div class="text-center mb-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-white romance-text">Chuck & Sarah</h1>
+      <p class="text-xl text-blue-200 mt-2">A Winter Romance</p>
+    </div>
+
+    <div class="couple-container bg-transparent rounded-xl shadow-2xl relative mb-8">
+      <div class="absolute inset-0 overflow-hidden">
+        <!-- Stars -->
+        <div class="absolute w-full h-full">
+          <div class="star" style="top: 10%; left: 15%;"></div>
+          <div class="star" style="top: 25%; left: 70%;"></div>
+          <div class="star" style="top: 40%; left: 50%;"></div>
+          <div class="star" style="top: 15%; left: 85%;"></div>
+          <div class="star" style="top: 50%; left: 30%;"></div>
+          <div class="star" style="top: 65%; left: 20%;"></div>
+          <div class="star" style="top: 75%; left: 60%;"></div>
+          <div class="star" style="top: 30%; left: 40%;"></div>
+        </div>
+
+        <!-- Moon -->
+        <div class="moon absolute top-10 right-10 md:top-16 md:right-16"></div>
+
+        <!-- Ground glow -->
+        <div class="absolute bottom-0 w-full h-1/3 bg-gradient-to-b from-transparent to-white opacity-20" style="border-radius: 0 0 0.75rem 0.75rem;"></div>
+      </div>
+
+      <!-- Couple -->
+      <div class="couple-cutout"></div>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-6 justify-between">
+      <div class="bg-black bg-opacity-70 p-6 rounded-xl flex-1">
+        <h3 class="text-2xl font-bold text-white mb-4"><i class="fas fa-heart text-pink-400 mr-2"></i> Their Story</h3>
+        <p class="text-blue-100">Chuck Bartowski and Sarah Walker's romance developed over five seasons of the hit show "Chuck". From their first meeting where Chuck downloaded the Intersect into his brain, to their eventual marriage, their love story was filled with action, humor, and heartfelt moments.</p>
+      </div>
+      <div class="bg-black bg-opacity-70 p-6 rounded-xl flex-1">
+        <h3 class="text-2xl font-bold text-white mb-4"><i class="fas fa-snowflake text-blue-200 mr-2"></i> Snowy Nights</h3>
+        <p class="text-blue-100">Some of their most romantic moments happened at night, including the snowy evening in Paris where they finally got engaged. The mix of danger, espionage, and genuine connection made their relationship one of the most beloved in TV history.</p>
+      </div>
+    </div>
+
+    <div class="mt-8 text-center">
+      <button id="moreSnowBtn" class="px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+        <i class="fas fa-plus mr-2"></i> Add More Snow
+      </button>
+      <button id="romanceModeBtn" class="ml-4 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+        <i class="fas fa-heart mr-2"></i> Romance Mode
+      </button>
+      <button id="toggleMusic" class="mt-4 ml-4 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+        <i class="fas fa-music mr-2"></i> Play Music
+      </button>
+    </div>
+  </div>
+
+  <!-- Audio -->
+  <audio id="bg-music" src="bollywood_Race 2008 - Pehli Nazar Mein.mp3" loop></audio>
+
+  <!-- Scripts -->
+  <script>
+    // Create stars
+    document.querySelectorAll('.star').forEach(star => {
+      const size = Math.random() * 3 + 1;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.backgroundColor = 'white';
+      star.style.borderRadius = '50%';
+      star.style.position = 'absolute';
+      star.style.opacity = Math.random() * 0.8 + 0.2;
+
+      if (Math.random() > 0.5) {
+        star.style.animation = `pulse ${Math.random() * 3 + 2}s infinite`;
+      }
+    });
+
+    // Snowflake logic
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      const size = Math.random() * 8 + 2;
+      snowflake.style.width = `${size}px`;
+      snowflake.style.height = `${size}px`;
+      snowflake.style.left = `${Math.random() * 100}%`;
+      snowflake.style.opacity = Math.random() * 0.8 + 0.2;
+      snowflake.style.animation = `falling ${Math.random() * 10 + 5}s linear infinite`;
+
+      document.querySelector('.couple-container').appendChild(snowflake);
+      setTimeout(() => snowflake.remove(), 15000);
+    }
+
+    // Initial snow
+    for (let i = 0; i < 50; i++) {
+      setTimeout(createSnowflake, Math.random() * 3000);
+    }
+
+    // Ongoing snow
+    setInterval(createSnowflake, 300);
+
+    // Add more snow
+    document.getElementById('moreSnowBtn').addEventListener('click', () => {
+      for (let i = 0; i < 30; i++) {
+        setTimeout(createSnowflake, Math.random() * 1000);
+      }
+    });
+
+    // Romance Mode
+    document.getElementById('romanceModeBtn').addEventListener('click', function () {
+      const body = document.body;
+      const moon = document.querySelector('.moon');
+      const isRomance = body.classList.toggle('romance-mode');
+      document.querySelectorAll('.romance-text').forEach(el => {
+        el.style.animation = isRomance ? 'pulse 2s infinite' : '';
+      });
+      moon.style.background = isRomance
+        ? 'radial-gradient(circle at 30px 30px, #ffcce6 0%, #ffcce6 90%, transparent 90%)'
+        : 'radial-gradient(circle at 30px 30px, #fff 0%, #fff 90%, transparent 90%)';
+
+      this.innerHTML = isRomance
+        ? '<i class="fas fa-heart-broken mr-2"></i> Normal Mode'
+        : '<i class="fas fa-heart mr-2"></i> Romance Mode';
+    });
+
+    // Music logic
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('toggleMusic');
+    let isPlaying = false;
+
+    musicBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        music.pause();
+        musicBtn.innerHTML = '<i class="fas fa-music mr-2"></i> Play Music';
+      } else {
+        music.play();
+        musicBtn.innerHTML = '<i class="fas fa-pause mr-2"></i> Pause Music';
+      }
+      isPlaying = !isPlaying;
+    });
+  </script>
+</body>
+</html>
